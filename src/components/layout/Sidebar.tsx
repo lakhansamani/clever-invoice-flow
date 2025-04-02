@@ -13,7 +13,7 @@ import {
 import {
   LayoutDashboard,
   Users,
-  FileInvoice,
+  File,
   Settings,
   LogOut,
   ChevronRight,
@@ -38,7 +38,7 @@ export function Sidebar() {
     {
       title: "Invoices",
       path: "/invoices",
-      icon: FileInvoice,
+      icon: File,
     },
     {
       title: "Settings",
@@ -52,7 +52,7 @@ export function Sidebar() {
       <div className="flex flex-col h-full">
         <div className="flex items-center justify-center h-16 border-b border-sidebar-border">
           <Link to="/" className="flex items-center space-x-2">
-            <FileInvoice className="h-6 w-6 text-primary" />
+            <File className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold text-sidebar-foreground">InvoicePro</span>
           </Link>
         </div>

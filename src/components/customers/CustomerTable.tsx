@@ -19,7 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, Plus, Search, FileInvoice, Eye, Edit, Trash } from "lucide-react";
+import { MoreHorizontal, Plus, Search, File, Eye, Edit, Trash } from "lucide-react";
 
 interface CustomerTableProps {
   customers: Customer[];
@@ -103,7 +103,7 @@ export function CustomerTable({ customers }: CustomerTableProps) {
                           Edit customer
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                          <FileInvoice className="mr-2 h-4 w-4" />
+                          <File className="mr-2 h-4 w-4" />
                           Create invoice
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />

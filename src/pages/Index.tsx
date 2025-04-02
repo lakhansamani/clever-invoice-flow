@@ -1,12 +1,12 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FileInvoice, Check, Shield, BarChart } from "lucide-react";
+import { File, Check, Shield, BarChart } from "lucide-react";
 
 export default function Index() {
   const features = [
     {
-      icon: <FileInvoice className="h-10 w-10 text-primary" />,
+      icon: <File className="h-10 w-10 text-primary" />,
       title: "Easy Invoicing",
       description: "Create and send professional invoices in seconds. Customize templates to match your brand.",
     },
@@ -33,7 +33,7 @@ export default function Index() {
       <header className="border-b bg-white">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center space-x-2">
-            <FileInvoice className="h-6 w-6 text-primary" />
+            <File className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold">InvoicePro</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
@@ -111,7 +111,7 @@ export default function Index() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <FileInvoice className="h-6 w-6" />
+                <File className="h-6 w-6" />
                 <span className="text-xl font-bold">InvoicePro</span>
               </div>
               <p className="text-gray-400">

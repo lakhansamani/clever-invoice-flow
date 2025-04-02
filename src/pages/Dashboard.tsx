@@ -2,7 +2,7 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { RecentInvoices } from "@/components/dashboard/RecentInvoices";
-import { Stats } from "@/lib/types";
+import { Invoice, InvoiceStatus, Stats } from "@/lib/types";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, PieChart, Bar, Pie, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
@@ -17,7 +17,7 @@ export default function Dashboard() {
     currency: "USD",
   };
 
-  const recentInvoices = [
+  const recentInvoices: Invoice[] = [
     {
       id: "1",
       companyId: "comp1",
@@ -27,7 +27,7 @@ export default function Dashboard() {
       number: "INV-2023-001",
       date: "2023-10-15",
       dueDate: "2023-11-15",
-      status: "paid",
+      status: "paid" as InvoiceStatus,
       total: 2500,
       currency: "USD",
       createdAt: "2023-10-15T10:00:00Z",
@@ -42,7 +42,7 @@ export default function Dashboard() {
       number: "INV-2023-002",
       date: "2023-10-18",
       dueDate: "2023-11-18",
-      status: "pending",
+      status: "pending" as InvoiceStatus,
       total: 1850,
       currency: "USD",
       createdAt: "2023-10-18T11:15:00Z",
@@ -57,7 +57,7 @@ export default function Dashboard() {
       number: "INV-2023-003",
       date: "2023-10-05",
       dueDate: "2023-11-05",
-      status: "overdue",
+      status: "overdue" as InvoiceStatus,
       total: 3200,
       currency: "USD",
       createdAt: "2023-10-05T09:30:00Z",
@@ -72,7 +72,7 @@ export default function Dashboard() {
       number: "INV-2023-004",
       date: "2023-10-22",
       dueDate: "2023-11-22",
-      status: "draft",
+      status: "draft" as InvoiceStatus,
       total: 4750,
       currency: "USD",
       createdAt: "2023-10-22T15:45:00Z",
