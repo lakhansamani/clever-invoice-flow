@@ -1,0 +1,91 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id      String   @id @default(uuid())
+  name    String
+  address String?
+  phone   String?
+  email   String?
+  website String?
+  logo    String?
+  users   User[]
+  customers Customer[]
+  invoices Invoice[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("user")
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  companyName String?
+  address     String?
+  city        String?
+  state       String?
+  zip         String?
+  country     String?
+  phone       String?
+  taxId       String?
+  currency    String   @default("USD")
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id])
+  invoices    Invoice[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([companyId, email])
+}
+
+model Invoice {
+  id                 String       @id @default(uuid())
+  number             String
+  date               DateTime
+  dueDate            DateTime
+  status             String
+  total              Float
+  currency           String
+  notes              String?
+  termsAndConditions String?
+  customerId         String
+  customer           Customer     @relation(fields: [customerId], references: [id])
+  companyId          String
+  company            Company      @relation(fields: [companyId], references: [id])
+  items              InvoiceItem[]
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  @@unique([companyId, number])
+}
+
+model InvoiceItem {
+  id          String  @id @default(uuid())
+  description String
+  quantity    Float
+  unitPrice   Float
+  amount      Float
+  taxRate     Float?
+  taxAmount   Float?
+  invoiceId   String
+  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}
