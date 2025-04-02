@@ -84,10 +84,12 @@ export function InvoiceTable({ invoices }: InvoiceTableProps) {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button className="w-full sm:w-auto">
-          <Plus className="h-4 w-4 mr-2" />
-          New Invoice
-        </Button>
+        <Link to="/invoices/new">
+          <Button className="w-full sm:w-auto">
+            <Plus className="h-4 w-4 mr-2" />
+            New Invoice
+          </Button>
+        </Link>
       </div>
 
       <div className="rounded-md border">
@@ -143,10 +145,12 @@ export function InvoiceTable({ invoices }: InvoiceTableProps) {
                           <Eye className="mr-2 h-4 w-4" />
                           View invoice
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <FileText className="mr-2 h-4 w-4" />
-                          Edit invoice
-                        </DropdownMenuItem>
+                        <Link to={`/invoices/edit/${invoice.id}`}>
+                          <DropdownMenuItem>
+                            <FileText className="mr-2 h-4 w-4" />
+                            Edit invoice
+                          </DropdownMenuItem>
+                        </Link>
                         <DropdownMenuItem>
                           <Download className="mr-2 h-4 w-4" />
                           Download PDF

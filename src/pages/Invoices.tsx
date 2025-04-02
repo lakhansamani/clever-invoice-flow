@@ -1,6 +1,9 @@
 
 import { AppLayout } from "@/components/layout/AppLayout";
 import { InvoiceTable } from "@/components/invoices/InvoiceTable";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Invoice } from "@/lib/types";
 
 export default function Invoices() {
@@ -101,9 +104,17 @@ export default function Invoices() {
   return (
     <AppLayout>
       <div className="page-container">
-        <div className="flex flex-col gap-2 mb-8">
-          <h1 className="text-3xl font-bold">Invoices</h1>
-          <p className="text-muted-foreground">Manage your invoices</p>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-bold">Invoices</h1>
+            <p className="text-muted-foreground">Manage your invoices</p>
+          </div>
+          <Link to="/invoices/new">
+            <Button>
+              <Plus className="h-4 w-4 mr-2" />
+              New Invoice
+            </Button>
+          </Link>
         </div>
         
         <InvoiceTable invoices={invoices} />

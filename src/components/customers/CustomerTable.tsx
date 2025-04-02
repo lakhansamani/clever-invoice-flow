@@ -47,10 +47,12 @@ export function CustomerTable({ customers }: CustomerTableProps) {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button className="w-full sm:w-auto">
-          <Plus className="h-4 w-4 mr-2" />
-          Add Customer
-        </Button>
+        <Link to="/customers/new">
+          <Button className="w-full sm:w-auto">
+            <Plus className="h-4 w-4 mr-2" />
+            Add Customer
+          </Button>
+        </Link>
       </div>
 
       <div className="rounded-md border">
@@ -98,10 +100,12 @@ export function CustomerTable({ customers }: CustomerTableProps) {
                           <Eye className="mr-2 h-4 w-4" />
                           View details
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Edit className="mr-2 h-4 w-4" />
-                          Edit customer
-                        </DropdownMenuItem>
+                        <Link to={`/customers/edit/${customer.id}`}>
+                          <DropdownMenuItem>
+                            <Edit className="mr-2 h-4 w-4" />
+                            Edit customer
+                          </DropdownMenuItem>
+                        </Link>
                         <DropdownMenuItem>
                           <File className="mr-2 h-4 w-4" />
                           Create invoice

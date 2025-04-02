@@ -1,13 +1,15 @@
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { CustomerTable } from "@/components/customers/CustomerTable";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { InvoiceForm } from "@/components/invoices/InvoiceForm";
 import { Customer } from "@/lib/types";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
-export default function Customers() {
-  // Mock data
+export default function InvoiceFormPage() {
+  const navigate = useNavigate();
+  
+  // Mock customer data for the form
   const customers: Customer[] = [
     {
       id: "1",
@@ -85,24 +87,49 @@ export default function Customers() {
       currency: "GBP",
     },
   ];
-
+  
+  const handleSubmit = async (data: any) => {
+    // Here we would typically save to the database via Supabase
+    console.log("Invoice data to save:", data);
+    
+    // For now, just navigate back to invoices page after a short delay
+    // to simulate saving
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+        navigate("/invoices");
+      }, 1000);
+    });
+  };
+  
+  const handleCancel = () => {
+    navigate("/invoices");
+  };
+  
   return (
     <AppLayout>
       <div className="page-container">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-8">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate("/invoices")}
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
           <div>
-            <h1 className="text-3xl font-bold">Customers</h1>
-            <p className="text-muted-foreground">Manage your customer information</p>
+            <h1 className="text-3xl font-bold">New Invoice</h1>
+            <p className="text-muted-foreground">Create a new invoice</p>
           </div>
-          <Link to="/customers/new">
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Customer
-            </Button>
-          </Link>
         </div>
         
-        <CustomerTable customers={customers} />
+        <div className="bg-white rounded-lg border p-6 shadow-sm">
+          <InvoiceForm 
+            customers={customers}
+            onSubmit={handleSubmit} 
+            onCancel={handleCancel} 
+          />
+        </div>
       </div>
     </AppLayout>
   );
